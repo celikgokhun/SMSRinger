@@ -67,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getContactsNumber()
-    {
+    public void getContactsNumber() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
             Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
             startActivityForResult(intent, PICK_CONTACT);
