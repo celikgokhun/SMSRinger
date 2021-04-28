@@ -22,9 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
     String phoneNumberTaken;
     String messageTaken;
+    String numberOfMessage;
 
     EditText phoneNumberEditText;
     EditText messageEditText;
+    EditText numberOfMessageEditText;
 
     static final int PICK_CONTACT=1;
 
@@ -33,24 +35,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         messageEditText = findViewById(R.id.messageEditText);
+        numberOfMessageEditText = findViewById(R.id.numberOfMessageEditText);
 
     }
 
     public void sendMessageViaContact(View view)
     {
         messageTaken = messageEditText.getText().toString();
+        numberOfMessage = numberOfMessageEditText.getText().toString();
         getContactsNumber();
-        sendSMS(phoneNumberTaken,messageTaken);
     }
 
     public void sendText(View view)
     {
         messageTaken = messageEditText.getText().toString();
         phoneNumberTaken = phoneNumberEditText.getText().toString();
-        sendSMS(phoneNumberTaken,messageTaken);
+        numberOfMessage = numberOfMessageEditText.getText().toString();
+    }
+
+    public void send(View view)
+    {
+
+        if (!phoneNumberTaken.isEmpty() && !messageTaken.isEmpty() && Integer.parseInt(numberOfMessage)>0)
+        {
+            for (int i = 0; i< Integer.parseInt(numberOfMessage); i++) {
+                sendSMS(phoneNumberTaken,messageTaken);
+            }
+        }
+
     }
 
     public void getContactsNumber()
@@ -76,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 SmsManager smsMgrVar = SmsManager.getDefault();
                 smsMgrVar.sendTextMessage(phoneNumber, null, message, null, null);
-                Toast.makeText(getApplicationContext(), "Message Sent",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_LONG).show();
             }
             catch (Exception ErrVar)
             {
@@ -125,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
                             phoneNumberTaken = phones.getString(phones.getColumnIndex("data1"));
                             phoneNumberEditText.setText(phoneNumberTaken);
-                            System.out.println("number is:"+phoneNumberTaken);
+                            //System.out.println("number is:"+phoneNumberTaken);
 
                         }
                         String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
