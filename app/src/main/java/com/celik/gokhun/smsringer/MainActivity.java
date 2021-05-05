@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,9 @@ import android.telephony.SmsManager;
 import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
     EditText messageEditText;
     EditText numberOfMessageEditText;
 
+    ScrollView menu;
+    ScrollView info;
+
+    ImageView IBButton;
+
+    boolean isPressed;
+
     static final int PICK_CONTACT=1;
 
     @Override
@@ -35,10 +46,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        isPressed =  false;
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         messageEditText = findViewById(R.id.messageEditText);
         numberOfMessageEditText = findViewById(R.id.numberOfMessageEditText);
 
+        menu = findViewById(R.id.menu_layout);
+        info = findViewById(R.id.info_layout);
+
+        IBButton = findViewById(R.id.info_back_button);
+
+    }
+
+    public void openInfo(View view)
+    {
+        if (!isPressed)
+        {
+            menu.setVisibility(View.GONE);
+            info.setVisibility(View.VISIBLE);
+            isPressed = true;
+            IBButton.setImageResource(R.drawable.back);
+        }
+        else
+        {
+            menu.setVisibility(View.VISIBLE);
+            info.setVisibility(View.GONE);
+            isPressed = false;
+            IBButton.setImageResource(R.drawable.info);
+        }
     }
 
     public void sendMessageViaContact(View view)
@@ -48,23 +83,20 @@ public class MainActivity extends AppCompatActivity {
         getContactsNumber();
     }
 
-    public void sendText(View view)
-    {
-        messageTaken = messageEditText.getText().toString();
-        phoneNumberTaken = phoneNumberEditText.getText().toString();
-        numberOfMessage = numberOfMessageEditText.getText().toString();
-    }
+
 
     public void send(View view)
     {
+        messageTaken = messageEditText.getText().toString();
+        numberOfMessage = numberOfMessageEditText.getText().toString();
+        phoneNumberTaken = phoneNumberEditText.getText().toString();
 
-        if (!phoneNumberTaken.isEmpty() && !messageTaken.isEmpty() && Integer.parseInt(numberOfMessage)>0)
-        {
+
+        if (!phoneNumberTaken.isEmpty() && !messageTaken.isEmpty() && Integer.parseInt(numberOfMessage)>0) {
             for (int i = 0; i< Integer.parseInt(numberOfMessage); i++) {
                 sendSMS(phoneNumberTaken,messageTaken);
             }
         }
-
     }
 
     public void getContactsNumber() {

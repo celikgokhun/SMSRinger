@@ -9,113 +9,166 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/info_back_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:layout_gravity="end"
+        android:layout_margin="8dp"
+        android:onClick="openInfo"
+        app:srcCompat="@drawable/info" />
+
+    <ScrollView
+        android:id="@+id/info_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal">
+        android:visibility="gone"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_weight="1"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_chat"
-            android:scaleType="fitCenter"
+        <LinearLayout
 
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Burn Inboxes !"
-            android:layout_margin="8dp"
-            android:textStyle="bold"
-            android:textColor="#FF0000"
-            android:textSize="20dp"
-
-            />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/phoneNumberEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        android:layout_marginHorizontal="10dp"
-        android:hint="Phone Number"
-        android:textSize="20dp"
-        />
-
-    <EditText
-        android:id="@+id/messageEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Message"
-        android:textSize="20dp"
-        />
-
-    <EditText
-        android:id="@+id/numberOfMessageEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="10dp"
-        android:hint="How Many ?"
-        android:text="1"
-        android:textSize="20dp"
-        />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/sendVia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="sendMessageViaContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="8dp"
-            android:text="Send Via Contact" />
+            android:orientation="vertical"
+            >
 
-        <Button
-            android:id="@+id/butt1on"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="8dp"
-            android:onClick="sendText"
-            android:text="Send Text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="25dp"
+                android:text="This application sends the same text as an SMS one after the other to the contact you have selected or to the phone number you have entered."
+                />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="25dp"
+                android:text="This way you can easily piss off your friends."
+                />
 
-    <LinearLayout
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+    <ScrollView
+        android:id="@+id/menu_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_weight="1"
-            android:onClick="send"
-            android:text="Ready Send !" />
+        <LinearLayout
 
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:visibility="visible"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_chat"
+                    android:scaleType="fitCenter"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Burn Inboxes !"
+                    android:layout_margin="8dp"
+                    android:textStyle="bold"
+                    android:textColor="#FF0000"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+
+                    />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/phoneNumberEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="Phone Number"
+                android:textSize="20dp"
+                />
+
+            <EditText
+                android:id="@+id/messageEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Message"
+                android:textSize="20dp"
+                />
+
+            <EditText
+                android:id="@+id/numberOfMessageEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginTop="5dp"
+                android:hint="How Many ?"
+                android:text="1"
+                android:textSize="20dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="sendMessageViaContact"
+                    android:text="Send Via Contact" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="send"
+                    android:text="Ready Send !" />
+
+            </LinearLayout>
 
 
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
 
 </LinearLayout>
