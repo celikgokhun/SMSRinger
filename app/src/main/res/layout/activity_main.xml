@@ -135,7 +135,6 @@
                 android:inputType="number"
                 android:layout_marginTop="5dp"
                 android:hint="How Many ?"
-                android:text="1"
                 android:textSize="20dp"
                 />
 

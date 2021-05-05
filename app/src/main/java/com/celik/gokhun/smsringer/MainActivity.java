@@ -91,12 +91,22 @@ public class MainActivity extends AppCompatActivity {
         numberOfMessage = numberOfMessageEditText.getText().toString();
         phoneNumberTaken = phoneNumberEditText.getText().toString();
 
-
-        if (!phoneNumberTaken.isEmpty() && !messageTaken.isEmpty() && Integer.parseInt(numberOfMessage)>0) {
-            for (int i = 0; i< Integer.parseInt(numberOfMessage); i++) {
-                sendSMS(phoneNumberTaken,messageTaken);
+        try
+        {
+            if (!phoneNumberTaken.trim().isEmpty() && !messageTaken.trim().isEmpty() && Integer.parseInt(numberOfMessage)>0) {
+                for (int i = 0; i< Integer.parseInt(numberOfMessage); i++) {
+                    sendSMS(phoneNumberTaken,messageTaken);
+                }
+            }
+            else {
+                Toast.makeText(this, "Please make sure to fill in the blanks! ", Toast.LENGTH_SHORT).show();
             }
         }
+        catch (NumberFormatException nfe)
+        {
+            Toast.makeText(this, "Please make sure to fill in the blanks! ", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void getContactsNumber() {
